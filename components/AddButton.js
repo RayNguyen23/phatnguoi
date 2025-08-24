@@ -2,11 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Plus } from 'lucide-react-native';
 
-export default function AddButton() {
+export default function AddButton({ onPress }) {
   return (
     <TouchableOpacity
       style={styles.addBtn}
       activeOpacity={0.9}
+      onPress={onPress}
     >
       <View style={styles.buttonContent}>
         <View style={styles.iconContainer}>

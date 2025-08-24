@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import VehicleCard from '../components/VehicleCard';
 import AddButton from '../components/AddButton';
+import AddVehicleModal from '../components/AddVehicleModal';
 
-const VehicleList = [
-  { id: 1, type: "1", plate: "20C28499" }, 
-  { id: 2, type: "2", plate: "97C5635" },
-  { id: 3, type: "3", plate: "51A12345" }
+const initialVehicleList = [
+  { id: 1, type: "1", plate: "20C28499", brand: "Honda", model: "Civic", year: 2020 }, 
+  { id: 2, type: "2", plate: "97C5635", brand: "Toyota", model: "Camry", year: 2019 },
+  { id: 3, type: "3", plate: "51A12345", brand: "BMW", model: "X5", year: 2021 }
 ];
 
 export default function VehicleScreen() {
+  const [vehicles, setVehicles] = useState(initialVehicleList);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleAddVehicle = (newVehicle) => {
+    const newId = Math.max(...vehicles.map(v => v.id), 0) + 1;
+    setVehicles(prev => [...prev, { ...newVehicle, id: newId }]);
+    setIsModalVisible(false);
+  };
+
   const renderItem = ({ item, index }) => (
     <VehicleCard vehicle={item} index={index} />
   );
@@ -23,14 +33,20 @@ export default function VehicleScreen() {
 
       <View style={styles.listContainer}>
         <FlatList 
-          data={VehicleList} 
+          data={vehicles} 
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.listContent}
         />
       </View>
 
-      <AddButton />
+      <AddButton onPress={() => setIsModalVisible(true)} />
+      
+      <AddVehicleModal
+        visible={isModalVisible}
+        onClose={() => setIsModalVisible(false)}
+        onAdd={handleAddVehicle}
+      />
     </View>
   );
 }
@@ -39,6 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#0F172A',
+    paddingTop: 50,
   },
   header: {
     paddingHorizontal: 24,
