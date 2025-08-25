@@ -14,7 +14,7 @@ import { X, Car, Hash, Calendar, Tag } from 'lucide-react-native';
 const vehicleTypes = [
   { id: '1', label: 'Xe máy', color: '#3B82F6' },
   { id: '2', label: 'Ô tô', color: '#10B981' },
-  { id: '3', label: 'Xe tải', color: '#F59E0B' },
+  { id: '3', label: 'Xe điện', color: '#F59E0B' },
 ];
 
 export default function AddVehicleModal({ visible, onClose, onAdd }) {
@@ -120,58 +120,6 @@ export default function AddVehicleModal({ visible, onClose, onAdd }) {
               </View>
             </View>
 
-            {/* Brand */}
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Hãng xe</Text>
-              <View style={styles.inputContainer}>
-                <Tag size={20} color="#64748B" style={styles.inputIcon} />
-                <TextInput
-                  style={styles.input}
-                  value={formData.brand}
-                  onChangeText={(text) => setFormData(prev => ({ ...prev, brand: text }))}
-                  placeholder="Ví dụ: Honda, Toyota, BMW"
-                  placeholderTextColor="#64748B"
-                />
-              </View>
-            </View>
-
-            {/* Model */}
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Mẫu xe</Text>
-              <View style={styles.inputContainer}>
-                <Car size={20} color="#64748B" style={styles.inputIcon} />
-                <TextInput
-                  style={styles.input}
-                  value={formData.model}
-                  onChangeText={(text) => setFormData(prev => ({ ...prev, model: text }))}
-                  placeholder="Ví dụ: Civic, Camry, X5"
-                  placeholderTextColor="#64748B"
-                />
-              </View>
-            </View>
-
-            {/* Year */}
-            <View style={styles.section}>
-              <Text style={styles.sectionTitle}>Năm sản xuất</Text>
-              <View style={styles.inputContainer}>
-                <Calendar size={20} color="#64748B" style={styles.inputIcon} />
-                <TextInput
-                  style={styles.input}
-                  value={formData.year?.toString() || ''}
-                  onChangeText={(text) => {
-                    const year = parseInt(text);
-                    setFormData(prev => ({ 
-                      ...prev, 
-                      year: isNaN(year) ? undefined : year 
-                    }));
-                  }}
-                  placeholder="Ví dụ: 2020"
-                  placeholderTextColor="#64748B"
-                  keyboardType="numeric"
-                  maxLength={4}
-                />
-              </View>
-            </View>
           </ScrollView>
 
           {/* Action Buttons */}
