@@ -5,9 +5,9 @@ import AddButton from '../components/AddButton';
 import AddVehicleModal from '../components/AddVehicleModal';
 
 const initialVehicleList = [
-  { id: 1, type: "1", plate: "20C28499", brand: "Honda", model: "Civic", year: 2020 }, 
-  { id: 2, type: "2", plate: "97C5635", brand: "Toyota", model: "Camry", year: 2019 },
-  { id: 3, type: "3", plate: "51A12345", brand: "BMW", model: "X5", year: 2021 }
+  { id: 1, type: "1", plate: "20C28499" }, 
+  { id: 2, type: "2", plate: "97C5635"},
+  { id: 3, type: "3", plate: "51A12345" }
 ];
 
 export default function VehicleScreen() {
